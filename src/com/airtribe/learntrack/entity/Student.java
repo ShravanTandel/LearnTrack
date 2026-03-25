@@ -1,57 +1,19 @@
 package com.airtribe.learntrack.entity;
 
-public class Student {
-    private String id;
-    private String firstName;
-    private String lastName; 
-    private String email;
+public class Student extends Person {
     private String batch;
     private boolean active;
 
     public Student(String id, String firstName, String lastName, String email, String batch, boolean active) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+        super(id, firstName, lastName, email);
         this.batch = batch;
         this.active = active;
     }
 
     public Student(String id, String firstName, String lastName, String batch, boolean active) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        super(id, firstName, lastName, null);
         this.batch = batch;
         this.active = active;
-        this.email = null;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getBatch() {
@@ -62,11 +24,16 @@ public class Student {
         this.batch = batch;
     }
 
-    public boolean getActive() {
+    public boolean isActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return getFirstName() + " " + getLastName() + " (" + batch + ")";
     }
 }

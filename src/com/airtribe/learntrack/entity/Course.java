@@ -43,11 +43,11 @@ public class Course {
         this.durationInWeeks = durationInWeeks;
     }
 
-    public boolean getActive() {
+    public boolean isActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 }
