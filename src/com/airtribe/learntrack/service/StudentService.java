@@ -3,48 +3,39 @@ package com.airtribe.learntrack.service;
 import java.util.ArrayList;
 import com.airtribe.learntrack.entity.Student;
 import com.airtribe.learntrack.exception.EntityNotFoundException;
+import com.airtribe.learntrack.repository.StudentRepository;
 
 public class StudentService {
-    private ArrayList<Student> students;
+    private StudentRepository studentRepository;
 
-    public StudentService() {
-        students = new ArrayList<>();
-    }
-
-    public Student getStudentForId(String id) {
-        for(Student student: students) {
-            if(student.getId().equals(id)) {
-                return student;
-            }
-        }
-        return null;
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
     public void addStudent(Student student) {
-        students.add(student);
+        studentRepository.save(student);
     }
 
     public void addStudent(String firstName, String lastName, String email, String batch) {
         Student newStudent = new Student(firstName, lastName, email, batch, true);
-        students.add(newStudent);
+        studentRepository.save(newStudent);
+    }
+
+    public Student getStudentById(String id) throws EntityNotFoundException {
+        Student student = studentRepository.findById(id);
+        if (student == null) {
+            throw new EntityNotFoundException("Student", id);
+        }
+        return student;
     }
 
     public void removeStudent(String id) throws EntityNotFoundException {
-        Student student = getStudentForId(id);
-
-        if(student == null) {
-            throw new EntityNotFoundException("Student", id);
-        }
-
-        students.remove(student);
+        Student student = getStudentById(id);
+        studentRepository.delete(student);
     }
 
     public void updateStudent(String id, Student updatedStudent) throws EntityNotFoundException {
-        Student student = getStudentForId(id);
-        if(student == null) {
-            throw new EntityNotFoundException("Student", id);
-        }
-
+        Student student = getStudentById(id);
         student.setFirstName(updatedStudent.getFirstName());
         student.setLastName(updatedStudent.getLastName());
         student.setEmail(updatedStudent.getEmail());
@@ -53,6 +44,6 @@ public class StudentService {
     }
 
     public ArrayList<Student> listStudents() {
-        return students;
+        return studentRepository.findAll();
     }
 }
