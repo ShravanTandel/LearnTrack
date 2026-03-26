@@ -46,4 +46,15 @@ public class StudentService {
     public ArrayList<Student> listStudents() {
         return studentRepository.findAll();
     }
+
+    public void deactivateStudent(String id) throws EntityNotFoundException {
+        Student student = getStudentById(id);
+        student.setActive(false);
+    }
+
+    public void activateStudent(String id) throws EntityNotFoundException {
+        Student student = getStudentById(id);
+
+        student.setActive(true);
+    }
 }

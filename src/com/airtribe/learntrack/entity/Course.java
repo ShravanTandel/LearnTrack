@@ -35,11 +35,11 @@ public class Course {
         this.description = description;
     }
 
-    public Integer getDurationInWeeks() {
+    public int getDurationInWeeks() {
         return durationInWeeks;
     }
 
-    public void setDurationInWeeks(Integer durationInWeeks) {
+    public void setDurationInWeeks(int durationInWeeks) {
         this.durationInWeeks = durationInWeeks;
     }
 
@@ -49,5 +49,10 @@ public class Course {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public String describeCourse() {
+        return "Course Id: " + getId() + " - " + getCourseName() + " - " + getDescription() + " (" + getDurationInWeeks()
+                + " weeks)";
     }
 }

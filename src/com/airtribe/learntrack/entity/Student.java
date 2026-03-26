@@ -36,6 +36,6 @@ public class Student extends Person {
 
     @Override
     public String getDisplayName() {
-        return getFirstName() + " " + getLastName() + " (" + batch + ")";
+        return "Student Id: " + getId() + " - " + getFirstName() + " " + getLastName() + " (" + batch + ")";
     }
 }

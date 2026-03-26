@@ -25,16 +25,8 @@ public class Enrollment {
         return studentId;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-
     public String getCourseId() {
         return courseId;
-    }
-
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
     }
 
     public String getEnrollmentDate() {
@@ -51,5 +43,10 @@ public class Enrollment {
 
     public void setStatus(EnrollmentStatus status) {
         this.status = status;
+    }
+
+    public String describeEnrollment() {
+        return "Enrollment ID: " + id + ", Student ID: " + studentId + ", Course ID: " + courseId +
+                ", Enrollment Date: " + enrollmentDate + ", Status: " + status;
     }
 }
